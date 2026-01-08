@@ -1,0 +1,340 @@
+.timeline-container {
+  position: relative;
+  max-width: 1000px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* Main timeline line - solid and authoritative */
+.timeline-line {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-primary);
+  z-index: 0;
+}
+
+.timeline-line-glow {
+  display: none;
+}
+
+/* Timeline item */
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding-left: 100px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--item-index) * 0.1s);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marker styling - clean diamond */
+.timeline-marker {
+  position: absolute;
+  left: 28px;
+  top: 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.marker-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border: 3px solid var(--color-bg-light);
+  border-radius: 0;
+  position: absolute;
+  box-shadow: 0 0 0 2px var(--color-primary);
+  transition: all 0.3s ease;
+  transform: rotate(45deg);
+}
+
+.timeline-item:hover .marker-dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent);
+  transform: rotate(45deg) scale(1.2);
+}
+
+/* Content card - clean, professional */
+.timeline-content {
+  background: rgba(255, 255, 255, 0.92);
+  padding: var(--spacing-lg);
+  border-radius: 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: none;
+  border-left: 4px solid var(--color-primary);
+  position: relative;
+  z-index: 10;
+}
+
+/* Remove ornamental corners */
+.content-ornament {
+  display: none;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -4px;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s ease;
+}
+
+.timeline-item.visible .timeline-content::before {
+  transform: scaleY(1);
+}
+
+.timeline-content:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+/* Header with year */
+.timeline-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.timeline-year {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.year-decoration {
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.timeline-age {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.6;
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+.timeline-role {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-bg-light);
+  background: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 6px 14px;
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.timeline-location {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+.timeline-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.timeline-link {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.timeline-link:hover {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.timeline-website-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--spacing-md);
+  padding: 10px 20px;
+  background: var(--color-primary);
+  color: var(--color-bg-light);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 2px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.timeline-website-btn:hover {
+  background: transparent;
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.timeline-image-placeholder {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(0, 0, 0, 0.02);
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+.timeline-image-placeholder span {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+/* End of timeline */
+.timeline-end {
+  text-align: center;
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.end-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.end-line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-primary);
+  opacity: 0.2;
+}
+
+.end-text {
+  letter-spacing: 4px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .timeline-container {
+    padding: var(--spacing-md) var(--spacing-xs);
+  }
+
+  .timeline-line {
+    left: 25px;
+    width: 2px;
+  }
+
+  .timeline-item {
+    padding-left: 65px;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+  }
+
+  .marker-icon {
+    font-size: 1.3rem;
+  }
+
+  .marker-dot {
+    width: 14px;
+    height: 14px;
+    border-width: 3px;
+  }
+
+  .timeline-year {
+    font-size: 0.85rem;
+  }
+
+  .timeline-title {
+    font-size: 1.4rem;
+  }
+
+  .timeline-content {
+    padding: var(--spacing-md);
+  }
+
+  .timeline-role {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-item {
+    padding-left: 50px;
+  }
+
+  .timeline-line {
+    left: 16px;
+  }
+
+  .timeline-marker {
+    width: 35px;
+    height: 35px;
+  }
+
+  .marker-icon {
+    font-size: 1rem;
+  }
+
+  .timeline-year {
+    font-size: 0.8rem;
+  }
+
+  .timeline-title {
+    font-size: 1.2rem;
+  }
+}

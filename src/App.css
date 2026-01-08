@@ -1,0 +1,29 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-bg);
+}
+
+.App > *:not(.mouse-trail-canvas) {
+  position: relative;
+  z-index: 5;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section spacing - removed max-width constraint */
+section {
+  padding: var(--spacing-xl) var(--spacing-md);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+}
